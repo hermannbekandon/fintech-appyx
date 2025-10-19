@@ -14,7 +14,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: man-shaft.com
+  - host: app.man-shaft.com
     http:
       paths:
       - path: /
