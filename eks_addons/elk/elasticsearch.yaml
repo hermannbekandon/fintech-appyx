@@ -1,4 +1,4 @@
-#
+##
 # Fluentd configuration - this installs onto all nodes and gathers all logs
 # A separate yaml configures Fluentd
 #
