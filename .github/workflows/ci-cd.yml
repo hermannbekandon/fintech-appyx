@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Deployment Environment'
+        description: "Deployment Environment"
         required: true
-        default: 'prod'
+        default: "prod"
         type: choice
         options: [dev, qa, uat, prod]
       image_tag:
-        description: 'Docker Image Tag (e.g., 1.0.0)'
+        description: "Docker Image Tag (e.g., 1.0.0)"
         required: false
 
   push:
@@ -26,6 +26,7 @@ env:
   AWS_REGION: us-east-2
   AWS_ACCOUNT_ID: 707610777865
   ECR_REPO: fintech-app
+  EKS_CLUSTER_NAME_PREFIX: prod-dominion-cluster
 
 jobs:
   build-and-push:
@@ -42,14 +43,13 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: "17"
+          distribution: "temurin"
 
       - name: Build with Maven
         run: |
           source /etc/profile.d/maven.sh || true
           mvn clean package -DskipTests
-          
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v2
@@ -192,4 +192,4 @@ jobs:
       #   run: |
       #     curl -X POST -H 'Content-type: application/json' \
       #       --data '{"text":"🔥 *Deployment FAILED* to `${{ github.event.inputs.environment || 'prod' }}`."}' \
-      #       ${{ secrets.SLACK_WEBHOOK_URL }} 
+      #       ${{ secrets.SLACK_WEBHOOK_URL }}
