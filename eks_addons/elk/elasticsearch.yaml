@@ -331,6 +331,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
+  host: kibana.man-shaft.com
   - http:
       paths:
       - path: /
